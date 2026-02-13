@@ -11,6 +11,12 @@
 		2354C3BE2A9D43760026392D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2354C3BD2A9D43760026392D /* ContentView.swift */; };
 		2354C3C02A9D43780026392D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2354C3BF2A9D43780026392D /* Assets.xcassets */; };
 		2354C3C32A9D43780026392D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2354C3C22A9D43780026392D /* Preview Assets.xcassets */; };
+		C10001022A9D43760026392D /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001012A9D43760026392D /* Models.swift */; };
+		C10001042A9D43760026392D /* ParkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001032A9D43760026392D /* ParkService.swift */; };
+		C10001062A9D43760026392D /* ParkCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001052A9D43760026392D /* ParkCardView.swift */; };
+		C10001082A9D43760026392D /* RidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001072A9D43760026392D /* RidesView.swift */; };
+		C100010A2A9D43760026392D /* RideCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001092A9D43760026392D /* RideCardView.swift */; };
+		C100010C2A9D43760026392D /* LandSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C100010B2A9D43760026392D /* LandSectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,12 @@
 		2354C3BD2A9D43760026392D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2354C3BF2A9D43780026392D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2354C3C22A9D43780026392D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C10001012A9D43760026392D /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		C10001032A9D43760026392D /* ParkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkService.swift; sourceTree = "<group>"; };
+		C10001052A9D43760026392D /* ParkCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkCardView.swift; sourceTree = "<group>"; };
+		C10001072A9D43760026392D /* RidesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RidesView.swift; sourceTree = "<group>"; };
+		C10001092A9D43760026392D /* RideCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideCardView.swift; sourceTree = "<group>"; };
+		C100010B2A9D43760026392D /* LandSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandSectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +64,13 @@
 			isa = PBXGroup;
 			children = (
 				2354C3BB2A9D43760026392D /* ParkTimesApp.swift */,
+				C10001012A9D43760026392D /* Models.swift */,
+				C10001032A9D43760026392D /* ParkService.swift */,
 				2354C3BD2A9D43760026392D /* ContentView.swift */,
+				C10001052A9D43760026392D /* ParkCardView.swift */,
+				C10001072A9D43760026392D /* RidesView.swift */,
+				C10001092A9D43760026392D /* RideCardView.swift */,
+				C100010B2A9D43760026392D /* LandSectionView.swift */,
 				2354C3BF2A9D43780026392D /* Assets.xcassets */,
 				2354C3C12A9D43780026392D /* Preview Content */,
 			);
@@ -139,6 +157,12 @@
 			files = (
 				2354C3BE2A9D43760026392D /* ContentView.swift in Sources */,
 				2354C3BC2A9D43760026392D /* ParkTimesApp.swift in Sources */,
+				C10001022A9D43760026392D /* Models.swift in Sources */,
+				C10001042A9D43760026392D /* ParkService.swift in Sources */,
+				C10001062A9D43760026392D /* ParkCardView.swift in Sources */,
+				C10001082A9D43760026392D /* RidesView.swift in Sources */,
+				C100010A2A9D43760026392D /* RideCardView.swift in Sources */,
+				C100010C2A9D43760026392D /* LandSectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
