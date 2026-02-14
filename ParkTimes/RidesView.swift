@@ -6,11 +6,23 @@
 import SwiftUI
 
 struct RidesView: View {
-    @State private var results: LandsAndRides?
+    @State private var attractions: [LiveEntity] = []
     @State private var loading = false
     @State private var errorMessage: String?
-    let parkId: Int
+    let parkId: String
     let parkName: String
+
+    private var openAttractions: [LiveEntity] {
+        attractions
+            .filter { $0.isOpen }
+            .sorted { ($0.waitTime ?? 0) > ($1.waitTime ?? 0) }
+    }
+
+    private var closedAttractions: [LiveEntity] {
+        attractions
+            .filter { !$0.isOpen }
+            .sorted { $0.name < $1.name }
+    }
 
     var body: some View {
         Group {
@@ -29,11 +41,25 @@ struct RidesView: View {
                     }
                     .buttonStyle(.bordered)
                 }
-            } else if let results {
+            } else {
                 ScrollView {
                     LazyVStack(spacing: 20) {
-                        ForEach(results.lands) { land in
-                            LandSectionView(land: land)
+                        if !openAttractions.isEmpty {
+                            AttractionSectionView(
+                                title: "Open",
+                                count: openAttractions.count,
+                                total: attractions.count,
+                                attractions: openAttractions
+                            )
+                        }
+                        if !closedAttractions.isEmpty {
+                            AttractionSectionView(
+                                title: "Closed",
+                                count: closedAttractions.count,
+                                total: attractions.count,
+                                attractions: closedAttractions,
+                                startExpanded: false
+                            )
                         }
                     }
                     .padding()
@@ -53,7 +79,8 @@ struct RidesView: View {
         errorMessage = nil
 
         do {
-            results = try await ParkService.getRides(parkId: parkId)
+            let liveData = try await ParkService.getLiveData(parkId: parkId)
+            attractions = liveData.filter { $0.isAttraction }
         } catch {
             errorMessage = "Unable to load rides. Check your connection."
         }

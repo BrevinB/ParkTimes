@@ -6,14 +6,10 @@
 import SwiftUI
 
 struct RideCardView: View {
-    let ride: RideModel
-
-    private var isOpen: Bool {
-        ride.isOpen ?? false
-    }
+    let ride: LiveEntity
 
     private var statusColor: Color {
-        isOpen ? .green : .red
+        ride.isOpen ? .green : .red
     }
 
     private var lastUpdatedText: String {
@@ -40,10 +36,10 @@ struct RideCardView: View {
     }
 
     private var waitTimeColor: Color {
-        let waitTime = ride.waitTime ?? 0
-        if waitTime < 30 {
+        let wt = ride.waitTime ?? 0
+        if wt < 30 {
             return .green
-        } else if waitTime < 60 {
+        } else if wt < 60 {
             return .orange
         } else {
             return .red
@@ -57,14 +53,14 @@ struct RideCardView: View {
                 .frame(width: 10, height: 10)
 
             VStack(alignment: .leading, spacing: 4) {
-                Text(ride.name ?? "Unknown Ride")
+                Text(ride.name)
                     .font(.subheadline)
                     .fontWeight(.medium)
                     .foregroundStyle(.primary)
                     .lineLimit(2)
 
                 HStack(spacing: 8) {
-                    Text(isOpen ? "Open" : "Closed")
+                    Text(ride.isOpen ? "Open" : "Closed")
                         .font(.caption)
                         .fontWeight(.medium)
                         .foregroundStyle(statusColor)
@@ -81,7 +77,7 @@ struct RideCardView: View {
 
             Spacer()
 
-            if isOpen {
+            if ride.isOpen {
                 VStack(spacing: 2) {
                     Text("\(ride.waitTime ?? 0)")
                         .font(.title2)

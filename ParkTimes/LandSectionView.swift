@@ -1,21 +1,18 @@
 //
-//  LandSectionView.swift
+//  AttractionSectionView.swift
 //  ParkTimes
 //
 
 import SwiftUI
 
-struct LandSectionView: View {
-    let land: LandModel
-    @State private var isExpanded = true
+struct AttractionSectionView: View {
+    let title: String
+    let count: Int
+    let total: Int
+    let attractions: [LiveEntity]
+    var startExpanded: Bool = true
 
-    private var rideCount: Int {
-        land.rides?.count ?? 0
-    }
-
-    private var openCount: Int {
-        land.rides?.filter { $0.isOpen == true }.count ?? 0
-    }
+    @State private var isExpanded: Bool = true
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -26,12 +23,12 @@ struct LandSectionView: View {
             } label: {
                 HStack {
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(land.name ?? "Unknown Land")
+                        Text(title)
                             .font(.title3)
                             .fontWeight(.bold)
                             .foregroundStyle(.primary)
 
-                        Text("\(openCount)/\(rideCount) open")
+                        Text("\(count)/\(total) attractions")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
@@ -48,10 +45,13 @@ struct LandSectionView: View {
             }
 
             if isExpanded {
-                ForEach(land.rides ?? []) { ride in
+                ForEach(attractions) { ride in
                     RideCardView(ride: ride)
                 }
             }
+        }
+        .onAppear {
+            isExpanded = startExpanded
         }
     }
 }

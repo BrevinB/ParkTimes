@@ -5,28 +5,46 @@
 
 import Foundation
 
-struct ParkModel: Codable, Identifiable, Hashable {
-    let id: Int
+struct ParkModel: Identifiable, Hashable {
+    let id: String
     let name: String
 }
 
-struct LandModel: Codable, Identifiable {
-    let id: Int?
-    let name: String?
-    let rides: [RideModel]?
+struct LiveDataResponse: Codable {
+    let id: String
+    let name: String
+    let liveData: [LiveEntity]
 }
 
-struct RideModel: Codable, Identifiable {
-    let id: Int?
-    let name: String?
-    let isOpen: Bool?
-    let waitTime: Int?
+struct LiveEntity: Codable, Identifiable {
+    let id: String
+    let name: String
+    let entityType: String
+    let status: String?
     let lastUpdated: String?
+    let queue: QueueData?
 }
 
-struct LandsAndRides: Codable {
-    let lands: [LandModel]
-    let rides: [RideModel]
+struct QueueData: Codable {
+    let STANDBY: StandbyQueue?
+}
+
+struct StandbyQueue: Codable {
+    let waitTime: Int?
+}
+
+extension LiveEntity {
+    var isOpen: Bool {
+        status == "OPERATING"
+    }
+
+    var waitTime: Int? {
+        queue?.STANDBY?.waitTime
+    }
+
+    var isAttraction: Bool {
+        entityType == "ATTRACTION"
+    }
 }
 
 enum PTError: Error {
