@@ -19,7 +19,15 @@ struct ParkMapView: View {
     @State private var showRides = true
     @State private var showShows = true
     @State private var showDining = false
-    @State private var showRestrooms = false
+    @State private var showRestrooms = ProcessInfo.processInfo.arguments.contains("-showRestrooms")
+    @State private var restrooms: [RestroomPlace] = []
+    @State private var restroomSearchDone = false
+
+    struct RestroomPlace: Identifiable {
+        let id = UUID()
+        let name: String
+        let coordinate: CLLocationCoordinate2D
+    }
 
     private var mappableEntities: [LiveEntity] {
         entities.filter { entity in
@@ -49,20 +57,38 @@ struct ParkMapView: View {
                         }
                     }
                 }
+                if showRestrooms {
+                    ForEach(restrooms) { restroom in
+                        Annotation(restroom.name, coordinate: restroom.coordinate) {
+                            Image(systemName: "toilet.fill")
+                                .font(.system(size: 11))
+                                .foregroundStyle(.white)
+                                .padding(6)
+                                .background(Circle().fill(Color.indigo))
+                                .shadow(radius: 2)
+                                .accessibilityLabel("\(restroom.name), restroom")
+                        }
+                    }
+                }
                 UserAnnotation()
             }
-            .mapStyle(.standard(
-                elevation: .realistic,
-                // Restroom locations come from Apple's own POI data — the park
-                // API doesn't provide them.
-                pointsOfInterest: showRestrooms ? .including([.restroom]) : .excludingAll
-            ))
+            .mapStyle(.standard(elevation: .realistic, pointsOfInterest: .excludingAll))
             .mapControls {
                 MapUserLocationButton()
                 MapCompass()
             }
             .safeAreaInset(edge: .top) {
                 filterChips
+            }
+            .onChange(of: showRestrooms) { _, isOn in
+                if isOn {
+                    Task { await loadRestrooms() }
+                }
+            }
+            .task {
+                if showRestrooms {
+                    await loadRestrooms()
+                }
             }
             .navigationTitle(park.name)
             .navigationBarTitleDisplayMode(.inline)
@@ -86,6 +112,47 @@ struct ParkMapView: View {
                 .presentationDetents([.medium, .large])
             }
         }
+    }
+
+    /// The park API has no restroom data, and Apple's map only draws restroom
+    /// POIs at deep zoom — so search Apple's POI database once for restrooms
+    /// inside the park's bounds and pin them ourselves.
+    private func loadRestrooms() async {
+        guard !restroomSearchDone, let region = parkRegion else { return }
+        restroomSearchDone = true
+
+        let request = MKLocalPointsOfInterestRequest(coordinateRegion: region)
+        request.pointOfInterestFilter = MKPointOfInterestFilter(including: [.restroom])
+
+        guard let response = try? await MKLocalSearch(request: request).start() else {
+            restroomSearchDone = false
+            return
+        }
+        restrooms = response.mapItems.map {
+            RestroomPlace(name: $0.name ?? "Restroom", coordinate: $0.placemark.coordinate)
+        }
+    }
+
+    /// Bounding region of everything we can place in this park, lightly padded.
+    private var parkRegion: MKCoordinateRegion? {
+        let coordinates = entities.compactMap { locations[$0.id] }
+        guard !coordinates.isEmpty else { return nil }
+
+        let lats = coordinates.map(\.latitude)
+        let lons = coordinates.map(\.longitude)
+        guard let minLat = lats.min(), let maxLat = lats.max(),
+              let minLon = lons.min(), let maxLon = lons.max() else { return nil }
+
+        return MKCoordinateRegion(
+            center: CLLocationCoordinate2D(
+                latitude: (minLat + maxLat) / 2,
+                longitude: (minLon + maxLon) / 2
+            ),
+            span: MKCoordinateSpan(
+                latitudeDelta: max((maxLat - minLat) * 1.3, 0.005),
+                longitudeDelta: max((maxLon - minLon) * 1.3, 0.005)
+            )
+        )
     }
 
     private var filterChips: some View {
