@@ -100,6 +100,18 @@ struct ParkMapView: View {
                     .fontWeight(.semibold)
                 }
             }
+            .overlay(alignment: .bottomLeading) {
+                if showRestrooms && !restrooms.isEmpty {
+                    Text("Restrooms © OpenStreetMap")
+                        .font(.system(size: 9))
+                        .foregroundStyle(.secondary)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 3)
+                        .background(Capsule().fill(.ultraThinMaterial))
+                        .padding(.leading, 8)
+                        .padding(.bottom, 26)
+                }
+            }
             .sheet(item: $selectedRide) { ride in
                 NavigationStack {
                     RideDetailView(
@@ -114,13 +126,32 @@ struct ParkMapView: View {
         }
     }
 
-    /// The park API has no restroom data, and Apple's map only draws restroom
-    /// POIs at deep zoom — so search Apple's POI database once for restrooms
-    /// inside the park's bounds and pin them ourselves.
+    /// The park API has no restroom data. OpenStreetMap maps park interiors
+    /// accurately (amenity=toilets), so query it first; fall back to Apple's
+    /// POI search only if OSM has nothing for this park.
     private func loadRestrooms() async {
         guard !restroomSearchDone, let region = parkRegion else { return }
         restroomSearchDone = true
 
+        let osmResults = await RestroomService.restrooms(
+            south: region.center.latitude - region.span.latitudeDelta / 2,
+            west: region.center.longitude - region.span.longitudeDelta / 2,
+            north: region.center.latitude + region.span.latitudeDelta / 2,
+            east: region.center.longitude + region.span.longitudeDelta / 2,
+            cacheKey: park.id
+        )
+
+        if !osmResults.isEmpty {
+            restrooms = osmResults.map {
+                RestroomPlace(
+                    name: "Restroom",
+                    coordinate: CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude)
+                )
+            }
+            return
+        }
+
+        // Fallback: Apple's POI database (coverage and accuracy vary).
         let request = MKLocalPointsOfInterestRequest(coordinateRegion: region)
         request.pointOfInterestFilter = MKPointOfInterestFilter(including: [.restroom])
 

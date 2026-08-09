@@ -38,6 +38,7 @@
 		C10001812A9D43760026392D /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001802A9D43760026392D /* AboutView.swift */; };
 		C10001832A9D43760026392D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = C10001822A9D43760026392D /* PrivacyInfo.xcprivacy */; };
 		C10001852A9D43760026392D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = C10001842A9D43760026392D /* PrivacyInfo.xcprivacy */; };
+		C10001872A9D43760026392D /* RestroomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001862A9D43760026392D /* RestroomService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		C10001802A9D43760026392D /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		C10001822A9D43760026392D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		C10001842A9D43760026392D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		C10001862A9D43760026392D /* RestroomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestroomService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +172,7 @@
 				C10001092A9D43760026392D /* RideCardView.swift */,
 				C100010B2A9D43760026392D /* AttractionSectionView.swift */,
 				C10001252A9D43760026392D /* ParkMapView.swift */,
+				C10001862A9D43760026392D /* RestroomService.swift */,
 				C100010D2A9D43760026392D /* Theme.swift */,
 				C100010F2A9D43760026392D /* RideDetailView.swift */,
 				C10001262A9D43760026392D /* Info.plist */,
@@ -358,6 +361,7 @@
 				C10001342A9D43760026392D /* DestinationsView.swift in Sources */,
 				C10001352A9D43760026392D /* ParkMapView.swift in Sources */,
 				C10001812A9D43760026392D /* AboutView.swift in Sources */,
+				C10001872A9D43760026392D /* RestroomService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -39,6 +39,10 @@ struct AboutView: View {
                         Link("themeparks.wiki", destination: URL(string: "https://themeparks.wiki")!)
                             .font(.subheadline)
                             .fontWeight(.semibold)
+                        Text("Restroom locations © OpenStreetMap contributors, available under the Open Database License.")
+                        Link("openstreetmap.org", destination: URL(string: "https://www.openstreetmap.org/copyright")!)
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
                     }
                 }
 
