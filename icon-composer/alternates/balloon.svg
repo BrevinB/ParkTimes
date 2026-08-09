@@ -1,0 +1,45 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <title>Premium Travel App Icon</title>
+  <desc>A minimalist hot air balloon floating in a night sky.</desc>
+  <defs>
+    <linearGradient id="skyGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#251D6B" />
+      <stop offset="50%" stop-color="#141138" />
+      <stop offset="100%" stop-color="#0C0C1F" />
+    </linearGradient>
+    <clipPath id="balloonShape">
+      <path d="M600,200 C380,200 380,550 560,650 L640,650 C820,550 820,200 600,200 Z" />
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="url(#skyGradient)" />
+
+  <!-- Stars -->
+  <g fill="#FFFFFF" opacity="0.4">
+    <circle cx="200" cy="400" r="6" />
+    <circle cx="850" cy="150" r="4" />
+    <circle cx="150" cy="750" r="5" />
+    <circle cx="800" cy="650" r="7" />
+    <circle cx="450" cy="100" r="3" />
+  </g>
+
+  <!-- Sparkle -->
+  <path d="M250,150 L262,188 L300,200 L262,212 L250,250 L238,212 L200,200 L238,188 Z" fill="#F5C84C" />
+
+  <!-- Balloon Ropes -->
+  <line x1="560" y1="650" x2="572" y2="720" stroke="#EDEFFB" stroke-width="14" stroke-linecap="round" />
+  <line x1="640" y1="650" x2="628" y2="720" stroke="#EDEFFB" stroke-width="14" stroke-linecap="round" />
+
+  <!-- Hot Air Balloon Envelope -->
+  <g clip-path="url(#balloonShape)">
+    <rect x="380" y="200" width="88" height="450" fill="#F5C84C" />
+    <rect x="468" y="200" width="88" height="450" fill="#EDEFFB" />
+    <rect x="556" y="200" width="88" height="450" fill="#F5C84C" />
+    <rect x="644" y="200" width="88" height="450" fill="#EDEFFB" />
+    <rect x="732" y="200" width="88" height="450" fill="#F5C84C" />
+  </g>
+
+  <!-- Basket -->
+  <rect x="565" y="720" width="70" height="45" rx="10" fill="#F5C84C" />
+</svg>
