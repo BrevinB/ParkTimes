@@ -7,68 +7,82 @@ import SwiftUI
 
 struct ParkCardView: View {
     let park: ParkModel
-
-    private var iconImage: String {
-        switch park.id {
-        case "47f90d2c-e191-4239-a466-5892ef59a88b": return "EpcotImg"
-        case "75ea578a-adc8-4116-a54d-dccb60765ef9": return "MagicKingdomImg"
-        case "288747d1-8b4f-4a64-867e-ea7c9b27bad8": return "HollywoodStudiosImg"
-        case "1c84a229-8862-4648-9c71-378ddd2c7693": return "AnimalKingdomImg"
-        case "267615cc-8943-4c2a-ae2c-5da728ca591f": return "IslandOfAdventureImg"
-        case "eb3f4560-2383-4a36-9152-6b3e5ed6bc57": return "UniversalStudiosImg"
-        case "12dbb85b-265f-44e6-bccf-f1faa17211fc": return "UniversalStudiosImg"
-        default: return "MagicKingdomImg"
-        }
-    }
-
-    private var accentColor: Color {
-        switch park.id {
-        case "47f90d2c-e191-4239-a466-5892ef59a88b": return .purple
-        case "75ea578a-adc8-4116-a54d-dccb60765ef9": return .blue
-        case "288747d1-8b4f-4a64-867e-ea7c9b27bad8": return .red
-        case "1c84a229-8862-4648-9c71-378ddd2c7693": return .green
-        case "267615cc-8943-4c2a-ae2c-5da728ca591f",
-             "eb3f4560-2383-4a36-9152-6b3e5ed6bc57",
-             "12dbb85b-265f-44e6-bccf-f1faa17211fc": return .orange
-        default: return .blue
-        }
-    }
+    var summary: ParkLiveSummary? = nil
 
     var body: some View {
-        HStack(spacing: 16) {
-            Image(iconImage)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 60, height: 60)
-                .clipShape(RoundedRectangle(cornerRadius: 14))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 14)
-                        .stroke(accentColor.opacity(0.3), lineWidth: 1)
-                )
+        ZStack(alignment: .bottomLeading) {
+            LinearGradient(
+                colors: park.style.colors,
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
 
-            VStack(alignment: .leading, spacing: 4) {
-                Text(park.name)
+            Image(systemName: park.style.icon)
+                .font(.system(size: 90, weight: .thin))
+                .foregroundStyle(.white.opacity(0.12))
+                .rotationEffect(.degrees(-10))
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
+                .offset(x: -16, y: 8)
+
+            HStack(alignment: .bottom) {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(park.name)
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundStyle(.white)
+
+                    Text(park.subtitle)
+                        .font(.caption)
+                        .foregroundStyle(.white.opacity(0.75))
+
+                    if let summary {
+                        HStack(spacing: 5) {
+                            Circle()
+                                .fill(summary.openCount > 0 ? .green : .red)
+                                .frame(width: 6, height: 6)
+                            Text(liveText(summary))
+                                .font(.caption2)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.white.opacity(0.9))
+                        }
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(Capsule().fill(.black.opacity(0.25)))
+                        .padding(.top, 2)
+                    }
+                }
+
+                Spacer()
+
+                Image(systemName: "arrow.right.circle.fill")
                     .font(.title3)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.primary)
-
-                Text("View wait times")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.white.opacity(0.5))
             }
-
-            Spacer()
-
-            Image(systemName: "chevron.right")
-                .font(.subheadline)
-                .fontWeight(.semibold)
-                .foregroundStyle(.tertiary)
+            .padding(18)
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(.regularMaterial)
-                .shadow(color: accentColor.opacity(0.15), radius: 8, y: 4)
-        )
+        .frame(height: 160)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .shadow(color: (park.style.colors.first ?? .blue).opacity(0.4), radius: 12, y: 6)
+        .padding(.horizontal)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilityText)
+    }
+
+    private func liveText(_ summary: ParkLiveSummary) -> String {
+        guard summary.openCount > 0 else { return "Closed" }
+        if summary.avgWait > 0 {
+            return "\(summary.openCount) open · avg \(summary.avgWait)m"
+        }
+        return "\(summary.openCount) open"
+    }
+
+    private var accessibilityText: String {
+        var text = "\(park.name). \(park.subtitle)."
+        if let summary {
+            text += summary.openCount > 0
+                ? " \(summary.openCount) attractions open, average wait \(summary.avgWait) minutes."
+                : " Currently closed."
+        }
+        return text
     }
 }

@@ -9,55 +9,179 @@ import SwiftUI
 
 struct ContentView: View {
 
-    private let disneyParks: [ParkModel] = [
-        ParkModel(id: "75ea578a-adc8-4116-a54d-dccb60765ef9", name: "Magic Kingdom"),
-        ParkModel(id: "47f90d2c-e191-4239-a466-5892ef59a88b", name: "EPCOT"),
-        ParkModel(id: "288747d1-8b4f-4a64-867e-ea7c9b27bad8", name: "Hollywood Studios"),
-        ParkModel(id: "1c84a229-8862-4648-9c71-378ddd2c7693", name: "Animal Kingdom"),
-    ]
+    @State private var summaries: [String: ParkLiveSummary] = [:]
+    @State private var path = NavigationPath()
 
-    private let universalParks: [ParkModel] = [
-        ParkModel(id: "267615cc-8943-4c2a-ae2c-5da728ca591f", name: "Islands of Adventure"),
-        ParkModel(id: "eb3f4560-2383-4a36-9152-6b3e5ed6bc57", name: "Universal Studios"),
-        ParkModel(id: "12dbb85b-265f-44e6-bccf-f1faa17211fc", name: "Epic Universe"),
-    ]
+    private var greeting: String {
+        let hour = Calendar.current.component(.hour, from: Date())
+        switch hour {
+        case 0..<12: return "Good Morning"
+        case 12..<17: return "Good Afternoon"
+        default: return "Good Evening"
+        }
+    }
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             ScrollView {
-                VStack(spacing: 24) {
-                    ParkSection(title: "Walt Disney World", parks: disneyParks)
-                    ParkSection(title: "Universal Orlando", parks: universalParks)
+                VStack(alignment: .leading, spacing: 32) {
+                    VStack(alignment: .leading, spacing: 6) {
+                        HStack(spacing: 10) {
+                            Text(greeting)
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .foregroundStyle(.primary)
+                            Image(systemName: "sparkles")
+                                .font(.title2)
+                                .foregroundStyle(.yellow.opacity(0.85))
+                                .accessibilityHidden(true)
+                        }
+                        Text(Date.now.formatted(.dateTime.weekday(.wide).month(.wide).day()))
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                        Text(MagicCopy.greetingSubline(hour: Calendar.current.component(.hour, from: Date())))
+                            .font(.caption)
+                            .fontWeight(.medium)
+                            .foregroundStyle(.cyan.opacity(0.75))
+                    }
+                    .padding(.horizontal)
+
+                    ResortSection(title: "Walt Disney World", parks: ParkCatalog.disneyParks, summaries: summaries)
+                    ResortSection(title: "Universal Orlando", parks: ParkCatalog.universalParks, summaries: summaries)
+
+                    NavigationLink {
+                        DestinationsView()
+                    } label: {
+                        MoreDestinationsCard()
+                    }
+                    .buttonStyle(MagicCardButtonStyle())
+
+                    NavigationLink {
+                        AboutView()
+                    } label: {
+                        Text("About ParkTimes")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.plain)
                 }
-                .padding()
+                .padding(.vertical)
             }
-            .navigationTitle("Park Times")
+            .scrollIndicators(.hidden)
+            .magicBackground()
+            .refreshable {
+                await loadSummaries()
+            }
+            .navigationDestination(for: ParkModel.self) { park in
+                RidesView(park: park)
+            }
+            .task {
+                openParkFromLaunchArguments()
+                await loadSummaries()
+            }
+        }
+    }
+
+    /// Screenshot/demo hook: `-openPark <park-id>` deep-opens a park on launch.
+    private func openParkFromLaunchArguments() {
+        let arguments = ProcessInfo.processInfo.arguments
+        guard let flagIndex = arguments.firstIndex(of: "-openPark"),
+              arguments.indices.contains(flagIndex + 1) else { return }
+        let parkId = arguments[flagIndex + 1]
+        if let park = (ParkCatalog.disneyParks + ParkCatalog.universalParks).first(where: { $0.id == parkId }) {
+            path.append(park)
+        }
+    }
+
+    private func loadSummaries() async {
+        let parks = ParkCatalog.disneyParks + ParkCatalog.universalParks
+        await withTaskGroup(of: (String, ParkLiveSummary)?.self) { group in
+            for park in parks {
+                group.addTask {
+                    guard let entities = try? await ParkService.getLiveData(parkId: park.id) else { return nil }
+                    return (park.id, ParkLiveSummary.from(entities: entities))
+                }
+            }
+            for await result in group {
+                if let (id, summary) = result {
+                    summaries[id] = summary
+                }
+            }
         }
     }
 }
 
-struct ParkSection: View {
+struct ResortSection: View {
     let title: String
     let parks: [ParkModel]
+    let summaries: [String: ParkLiveSummary]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text(title)
-                .font(.headline)
-                .foregroundStyle(.secondary)
-                .padding(.leading, 4)
+        VStack(alignment: .leading, spacing: 14) {
+            HStack(alignment: .firstTextBaseline) {
+                Text(title)
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .foregroundStyle(.primary)
+                Spacer()
+                Text("\(parks.count) parks")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.horizontal)
 
             ForEach(parks) { park in
                 NavigationLink {
-                    RidesView(parkId: park.id, parkName: park.name)
+                    RidesView(park: park)
                 } label: {
-                    ParkCardView(park: park)
+                    ParkCardView(park: park, summary: summaries[park.id])
                 }
+                .buttonStyle(MagicCardButtonStyle())
             }
         }
+    }
+}
+
+struct MoreDestinationsCard: View {
+    var body: some View {
+        HStack(spacing: 14) {
+            Image(systemName: "globe")
+                .font(.title2)
+                .foregroundStyle(.cyan)
+
+            VStack(alignment: .leading, spacing: 3) {
+                Text("More Destinations")
+                    .font(.headline)
+                    .foregroundStyle(.primary)
+                Text("Disneyland, Tokyo, Paris and beyond")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+
+            Spacer()
+
+            Image(systemName: "chevron.right")
+                .font(.caption)
+                .fontWeight(.bold)
+                .foregroundStyle(.secondary)
+        }
+        .padding(16)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color.cardBackground)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(.cyan.opacity(0.15), lineWidth: 1)
+                )
+        )
+        .padding(.horizontal)
+        .accessibilityElement(children: .combine)
     }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(FavoritesStore.shared)
+        .environmentObject(AlertStore.shared)
 }

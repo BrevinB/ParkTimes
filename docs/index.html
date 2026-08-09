@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ParkTimes — Live theme park wait times</title>
+<meta name="description" content="ParkTimes shows live wait times, park hours, showtimes and forecasts for Disney World, Universal Orlando and theme parks worldwide.">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: ui-rounded, "Arial Rounded MT Bold", -apple-system, "Segoe UI", sans-serif;
+    background: radial-gradient(120% 80% at 50% -10%, #1e1b5e 0%, #0d0d1f 60%);
+    color: #fff; min-height: 100vh;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 64px 24px 80px; position: relative; }
+  .star { position: fixed; background:#fff; border-radius:50%; pointer-events:none; }
+  h1 { font-size: 44px; margin-bottom: 8px; }
+  h1 span { color: #facc15; }
+  .tagline { color: rgba(255,255,255,.65); font-size: 19px; margin-bottom: 40px; }
+  h2 { font-size: 24px; margin: 40px 0 12px; color: #67e8f9; }
+  p, li { color: rgba(255,255,255,.8); line-height: 1.6; font-size: 16px; }
+  ul { padding-left: 22px; margin-top: 8px; }
+  a { color: #67e8f9; }
+  .card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+          border-radius: 16px; padding: 20px 22px; margin-top: 14px; }
+  .footer { margin-top: 56px; font-size: 13px; color: rgba(255,255,255,.4); line-height: 1.6; }
+</style>
+</head>
+<body>
+  <div class="star" style="left:8%;top:12%;width:2px;height:2px;opacity:.5"></div>
+  <div class="star" style="left:22%;top:30%;width:3px;height:3px;opacity:.3"></div>
+  <div class="star" style="left:81%;top:9%;width:2px;height:2px;opacity:.6"></div>
+  <div class="star" style="left:64%;top:38%;width:2px;height:2px;opacity:.35"></div>
+  <div class="star" style="left:91%;top:55%;width:3px;height:3px;opacity:.4"></div>
+  <div class="star" style="left:12%;top:70%;width:2px;height:2px;opacity:.45"></div>
+
+  <div class="wrap">
+    <h1>ParkTimes <span>&#10024;</span></h1>
+    <p class="tagline">Every wait time. One glance. Live data for Disney World, Universal Orlando &amp; theme parks worldwide.</p>
+
+    <h2>What it does</h2>
+    <div class="card">
+      <ul>
+        <li>Live standby waits, Lightning Lane prices, single rider &amp; virtual queues</li>
+        <li>Park hours, Early Entry and special event schedules</li>
+        <li>Wait forecasts for the rest of the day</li>
+        <li>Favorites, wait-drop alerts, home screen widgets &amp; Live Activities</li>
+        <li>A live map of every attraction in the park</li>
+      </ul>
+    </div>
+
+    <h2 id="support">Support</h2>
+    <div class="card">
+      <p>Questions, bug reports, or feature ideas? We'd love to hear from you.</p>
+      <p style="margin-top:10px">Email: <a href="mailto:brevbot2@gmail.com">brevbot2@gmail.com</a></p>
+      <p style="margin-top:10px">Or open an issue on <a href="https://github.com/BrevinB/ParkTimes/issues">GitHub</a>.</p>
+    </div>
+
+    <h2>Common questions</h2>
+    <div class="card">
+      <p><strong>Why do wait times differ from what's posted in the park?</strong><br>
+      Times come from the community-run <a href="https://themeparks.wiki">themeparks.wiki</a> API and are estimates. They usually match the official posted times closely, but can lag by a few minutes.</p>
+      <p style="margin-top:14px"><strong>Why didn't my wait alert fire in the background?</strong><br>
+      iOS decides when apps may refresh in the background, so background alerts are best-effort. Alerts always fire while the app is open.</p>
+      <p style="margin-top:14px"><strong>Does the app need my location?</strong><br>
+      Only if you want to see yourself on the ride map or get walking directions. Everything else works without it.</p>
+    </div>
+
+    <p style="margin-top:24px"><a href="privacy.html">Privacy Policy</a></p>
+
+    <p class="footer">ParkTimes is an independent app and is not affiliated with, endorsed by, or sponsored by The Walt Disney Company, Universal Destinations &amp; Experiences, or any park operator. All park and attraction names are trademarks of their respective owners, used only to identify the parks they refer to.</p>
+  </div>
+</body>
+</html>

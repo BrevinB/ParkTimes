@@ -16,7 +16,28 @@
 		C10001062A9D43760026392D /* ParkCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001052A9D43760026392D /* ParkCardView.swift */; };
 		C10001082A9D43760026392D /* RidesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001072A9D43760026392D /* RidesView.swift */; };
 		C100010A2A9D43760026392D /* RideCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001092A9D43760026392D /* RideCardView.swift */; };
-		C100010C2A9D43760026392D /* LandSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C100010B2A9D43760026392D /* LandSectionView.swift */; };
+		C100010C2A9D43760026392D /* AttractionSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C100010B2A9D43760026392D /* AttractionSectionView.swift */; };
+		C10001302A9D43760026392D /* SharedStores.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001202A9D43760026392D /* SharedStores.swift */; };
+		C10001312A9D43760026392D /* ParkActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001212A9D43760026392D /* ParkActivityAttributes.swift */; };
+		C10001322A9D43760026392D /* WaitAlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001222A9D43760026392D /* WaitAlertManager.swift */; };
+		C10001332A9D43760026392D /* LiveActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001232A9D43760026392D /* LiveActivityController.swift */; };
+		C10001342A9D43760026392D /* DestinationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001242A9D43760026392D /* DestinationsView.swift */; };
+		C10001352A9D43760026392D /* ParkMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001252A9D43760026392D /* ParkMapView.swift */; };
+		C100010E2A9D43760026392D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C100010D2A9D43760026392D /* Theme.swift */; };
+		C10001102A9D43760026392D /* RideDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C100010F2A9D43760026392D /* RideDetailView.swift */; };
+		C10001502A9D43760026392D /* ParkTimesWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001412A9D43760026392D /* ParkTimesWidgetsBundle.swift */; };
+		C10001512A9D43760026392D /* FavoritesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001422A9D43760026392D /* FavoritesWidget.swift */; };
+		C10001522A9D43760026392D /* ParkActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001432A9D43760026392D /* ParkActivityWidget.swift */; };
+		C10001532A9D43760026392D /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001012A9D43760026392D /* Models.swift */; };
+		C10001542A9D43760026392D /* ParkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001032A9D43760026392D /* ParkService.swift */; };
+		C10001552A9D43760026392D /* SharedStores.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001202A9D43760026392D /* SharedStores.swift */; };
+		C10001562A9D43760026392D /* ParkActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001212A9D43760026392D /* ParkActivityAttributes.swift */; };
+		C10001572A9D43760026392D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C100010D2A9D43760026392D /* Theme.swift */; };
+		C10001582A9D43760026392D /* ParkTimesWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C10001402A9D43760026392D /* ParkTimesWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C10001732A9D43760026392D /* ParkTimesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001712A9D43760026392D /* ParkTimesTests.swift */; };
+		C10001812A9D43760026392D /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001802A9D43760026392D /* AboutView.swift */; };
+		C10001832A9D43760026392D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = C10001822A9D43760026392D /* PrivacyInfo.xcprivacy */; };
+		C10001852A9D43760026392D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = C10001842A9D43760026392D /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,11 +51,77 @@
 		C10001052A9D43760026392D /* ParkCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkCardView.swift; sourceTree = "<group>"; };
 		C10001072A9D43760026392D /* RidesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RidesView.swift; sourceTree = "<group>"; };
 		C10001092A9D43760026392D /* RideCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideCardView.swift; sourceTree = "<group>"; };
-		C100010B2A9D43760026392D /* LandSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandSectionView.swift; sourceTree = "<group>"; };
+		C100010B2A9D43760026392D /* AttractionSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionSectionView.swift; sourceTree = "<group>"; };
+		C10001202A9D43760026392D /* SharedStores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStores.swift; sourceTree = "<group>"; };
+		C10001212A9D43760026392D /* ParkActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkActivityAttributes.swift; sourceTree = "<group>"; };
+		C10001222A9D43760026392D /* WaitAlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitAlertManager.swift; sourceTree = "<group>"; };
+		C10001232A9D43760026392D /* LiveActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityController.swift; sourceTree = "<group>"; };
+		C10001242A9D43760026392D /* DestinationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationsView.swift; sourceTree = "<group>"; };
+		C10001252A9D43760026392D /* ParkMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkMapView.swift; sourceTree = "<group>"; };
+		C10001262A9D43760026392D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C10001272A9D43760026392D /* ParkTimes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ParkTimes.entitlements; sourceTree = "<group>"; };
+		C100010D2A9D43760026392D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		C100010F2A9D43760026392D /* RideDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDetailView.swift; sourceTree = "<group>"; };
+		C10001402A9D43760026392D /* ParkTimesWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ParkTimesWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C10001412A9D43760026392D /* ParkTimesWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkTimesWidgetsBundle.swift; sourceTree = "<group>"; };
+		C10001422A9D43760026392D /* FavoritesWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesWidget.swift; sourceTree = "<group>"; };
+		C10001432A9D43760026392D /* ParkActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkActivityWidget.swift; sourceTree = "<group>"; };
+		C10001442A9D43760026392D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C10001452A9D43760026392D /* ParkTimesWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ParkTimesWidgets.entitlements; sourceTree = "<group>"; };
+		C10001712A9D43760026392D /* ParkTimesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkTimesTests.swift; sourceTree = "<group>"; };
+		C10001742A9D43760026392D /* ParkTimesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParkTimesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C10001802A9D43760026392D /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		C10001822A9D43760026392D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		C10001842A9D43760026392D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXContainerItemProxy section */
+		C10001652A9D43760026392D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2354C3B02A9D43760026392D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C10001602A9D43760026392D;
+			remoteInfo = ParkTimesWidgets;
+		};
+		C10001792A9D43760026392D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2354C3B02A9D43760026392D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2354C3B72A9D43760026392D;
+			remoteInfo = ParkTimes;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C10001642A9D43760026392D /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C10001582A9D43760026392D /* ParkTimesWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2354C3B52A9D43760026392D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C10001622A9D43760026392D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C10001772A9D43760026392D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -48,6 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				2354C3BA2A9D43760026392D /* ParkTimes */,
+				C10001462A9D43760026392D /* ParkTimesWidgets */,
+				C10001722A9D43760026392D /* ParkTimesTests */,
 				2354C3B92A9D43760026392D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,6 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				2354C3B82A9D43760026392D /* ParkTimes.app */,
+				C10001402A9D43760026392D /* ParkTimesWidgets.appex */,
+				C10001742A9D43760026392D /* ParkTimesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -66,11 +157,23 @@
 				2354C3BB2A9D43760026392D /* ParkTimesApp.swift */,
 				C10001012A9D43760026392D /* Models.swift */,
 				C10001032A9D43760026392D /* ParkService.swift */,
+				C10001202A9D43760026392D /* SharedStores.swift */,
+				C10001212A9D43760026392D /* ParkActivityAttributes.swift */,
+				C10001222A9D43760026392D /* WaitAlertManager.swift */,
+				C10001232A9D43760026392D /* LiveActivityController.swift */,
 				2354C3BD2A9D43760026392D /* ContentView.swift */,
 				C10001052A9D43760026392D /* ParkCardView.swift */,
+				C10001242A9D43760026392D /* DestinationsView.swift */,
+				C10001802A9D43760026392D /* AboutView.swift */,
+				C10001822A9D43760026392D /* PrivacyInfo.xcprivacy */,
 				C10001072A9D43760026392D /* RidesView.swift */,
 				C10001092A9D43760026392D /* RideCardView.swift */,
-				C100010B2A9D43760026392D /* LandSectionView.swift */,
+				C100010B2A9D43760026392D /* AttractionSectionView.swift */,
+				C10001252A9D43760026392D /* ParkMapView.swift */,
+				C100010D2A9D43760026392D /* Theme.swift */,
+				C100010F2A9D43760026392D /* RideDetailView.swift */,
+				C10001262A9D43760026392D /* Info.plist */,
+				C10001272A9D43760026392D /* ParkTimes.entitlements */,
 				2354C3BF2A9D43780026392D /* Assets.xcassets */,
 				2354C3C12A9D43780026392D /* Preview Content */,
 			);
@@ -85,6 +188,27 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		C10001462A9D43760026392D /* ParkTimesWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				C10001412A9D43760026392D /* ParkTimesWidgetsBundle.swift */,
+				C10001422A9D43760026392D /* FavoritesWidget.swift */,
+				C10001432A9D43760026392D /* ParkActivityWidget.swift */,
+				C10001442A9D43760026392D /* Info.plist */,
+				C10001452A9D43760026392D /* ParkTimesWidgets.entitlements */,
+				C10001842A9D43760026392D /* PrivacyInfo.xcprivacy */,
+			);
+			path = ParkTimesWidgets;
+			sourceTree = "<group>";
+		};
+		C10001722A9D43760026392D /* ParkTimesTests */ = {
+			isa = PBXGroup;
+			children = (
+				C10001712A9D43760026392D /* ParkTimesTests.swift */,
+			);
+			path = ParkTimesTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -95,15 +219,52 @@
 				2354C3B42A9D43760026392D /* Sources */,
 				2354C3B52A9D43760026392D /* Frameworks */,
 				2354C3B62A9D43760026392D /* Resources */,
+				C10001642A9D43760026392D /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C10001662A9D43760026392D /* PBXTargetDependency */,
 			);
 			name = ParkTimes;
 			productName = ParkTimes;
 			productReference = 2354C3B82A9D43760026392D /* ParkTimes.app */;
 			productType = "com.apple.product-type.application";
+		};
+		C10001602A9D43760026392D /* ParkTimesWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C10001692A9D43760026392D /* Build configuration list for PBXNativeTarget "ParkTimesWidgets" */;
+			buildPhases = (
+				C10001612A9D43760026392D /* Sources */,
+				C10001622A9D43760026392D /* Frameworks */,
+				C10001632A9D43760026392D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ParkTimesWidgets;
+			productName = ParkTimesWidgets;
+			productReference = C10001402A9D43760026392D /* ParkTimesWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		C10001752A9D43760026392D /* ParkTimesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C100017D2A9D43760026392D /* Build configuration list for PBXNativeTarget "ParkTimesTests" */;
+			buildPhases = (
+				C10001762A9D43760026392D /* Sources */,
+				C10001772A9D43760026392D /* Frameworks */,
+				C10001782A9D43760026392D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C100017A2A9D43760026392D /* PBXTargetDependency */,
+			);
+			name = ParkTimesTests;
+			productName = ParkTimesTests;
+			productReference = C10001742A9D43760026392D /* ParkTimesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -117,6 +278,13 @@
 				TargetAttributes = {
 					2354C3B72A9D43760026392D = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					C10001602A9D43760026392D = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					C10001752A9D43760026392D = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 2354C3B72A9D43760026392D;
 					};
 				};
 			};
@@ -134,6 +302,8 @@
 			projectRoot = "";
 			targets = (
 				2354C3B72A9D43760026392D /* ParkTimes */,
+				C10001602A9D43760026392D /* ParkTimesWidgets */,
+				C10001752A9D43760026392D /* ParkTimesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -145,6 +315,22 @@
 			files = (
 				2354C3C32A9D43780026392D /* Preview Assets.xcassets in Resources */,
 				2354C3C02A9D43780026392D /* Assets.xcassets in Resources */,
+				C10001832A9D43760026392D /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C10001632A9D43760026392D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C10001852A9D43760026392D /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C10001782A9D43760026392D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,11 +348,56 @@
 				C10001062A9D43760026392D /* ParkCardView.swift in Sources */,
 				C10001082A9D43760026392D /* RidesView.swift in Sources */,
 				C100010A2A9D43760026392D /* RideCardView.swift in Sources */,
-				C100010C2A9D43760026392D /* LandSectionView.swift in Sources */,
+				C100010C2A9D43760026392D /* AttractionSectionView.swift in Sources */,
+				C100010E2A9D43760026392D /* Theme.swift in Sources */,
+				C10001102A9D43760026392D /* RideDetailView.swift in Sources */,
+				C10001302A9D43760026392D /* SharedStores.swift in Sources */,
+				C10001312A9D43760026392D /* ParkActivityAttributes.swift in Sources */,
+				C10001322A9D43760026392D /* WaitAlertManager.swift in Sources */,
+				C10001332A9D43760026392D /* LiveActivityController.swift in Sources */,
+				C10001342A9D43760026392D /* DestinationsView.swift in Sources */,
+				C10001352A9D43760026392D /* ParkMapView.swift in Sources */,
+				C10001812A9D43760026392D /* AboutView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C10001612A9D43760026392D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C10001502A9D43760026392D /* ParkTimesWidgetsBundle.swift in Sources */,
+				C10001512A9D43760026392D /* FavoritesWidget.swift in Sources */,
+				C10001522A9D43760026392D /* ParkActivityWidget.swift in Sources */,
+				C10001532A9D43760026392D /* Models.swift in Sources */,
+				C10001542A9D43760026392D /* ParkService.swift in Sources */,
+				C10001552A9D43760026392D /* SharedStores.swift in Sources */,
+				C10001562A9D43760026392D /* ParkActivityAttributes.swift in Sources */,
+				C10001572A9D43760026392D /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C10001762A9D43760026392D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C10001732A9D43760026392D /* ParkTimesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C10001662A9D43760026392D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C10001602A9D43760026392D /* ParkTimesWidgets */;
+			targetProxy = C10001652A9D43760026392D /* PBXContainerItemProxy */;
+		};
+		C100017A2A9D43760026392D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2354C3B72A9D43760026392D /* ParkTimes */;
+			targetProxy = C10001792A9D43760026392D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		2354C3C42A9D43780026392D /* Debug */ = {
@@ -288,17 +519,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ParkTimes/ParkTimes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ParkTimes/Preview Content\"";
 				DEVELOPMENT_TEAM = YFXZ6WNN53;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ParkTimes/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "ParkTimes uses your location to show where you are relative to rides and attractions.";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -317,17 +552,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ParkTimes/ParkTimes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ParkTimes/Preview Content\"";
 				DEVELOPMENT_TEAM = YFXZ6WNN53;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ParkTimes/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "ParkTimes uses your location to show where you are relative to rides and attractions.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -338,6 +577,98 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C10001672A9D43760026392D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ParkTimesWidgets/ParkTimesWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YFXZ6WNN53;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ParkTimesWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ParkTimes;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.brevinb.ParkTimes.Widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C10001682A9D43760026392D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ParkTimesWidgets/ParkTimesWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YFXZ6WNN53;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ParkTimesWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ParkTimes;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.brevinb.ParkTimes.Widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C100017B2A9D43760026392D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YFXZ6WNN53;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.brevinb.ParkTimesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParkTimes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ParkTimes";
+			};
+			name = Debug;
+		};
+		C100017C2A9D43760026392D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YFXZ6WNN53;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.brevinb.ParkTimesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParkTimes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ParkTimes";
 			};
 			name = Release;
 		};
@@ -358,6 +689,24 @@
 			buildConfigurations = (
 				2354C3C72A9D43780026392D /* Debug */,
 				2354C3C82A9D43780026392D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C10001692A9D43760026392D /* Build configuration list for PBXNativeTarget "ParkTimesWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C10001672A9D43760026392D /* Debug */,
+				C10001682A9D43760026392D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C100017D2A9D43760026392D /* Build configuration list for PBXNativeTarget "ParkTimesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C100017B2A9D43760026392D /* Debug */,
+				C100017C2A9D43760026392D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
