@@ -39,6 +39,8 @@
 		C10001832A9D43760026392D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = C10001822A9D43760026392D /* PrivacyInfo.xcprivacy */; };
 		C10001852A9D43760026392D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = C10001842A9D43760026392D /* PrivacyInfo.xcprivacy */; };
 		C10001872A9D43760026392D /* RestroomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001862A9D43760026392D /* RestroomService.swift */; };
+		C10001912A9D43760026392D /* ParkCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001902A9D43760026392D /* ParkCache.swift */; };
+		C10001932A9D43760026392D /* DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10001922A9D43760026392D /* DeepLink.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +77,8 @@
 		C10001822A9D43760026392D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		C10001842A9D43760026392D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		C10001862A9D43760026392D /* RestroomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestroomService.swift; sourceTree = "<group>"; };
+		C10001902A9D43760026392D /* ParkCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkCache.swift; sourceTree = "<group>"; };
+		C10001922A9D43760026392D /* DeepLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLink.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,6 +177,8 @@
 				C100010B2A9D43760026392D /* AttractionSectionView.swift */,
 				C10001252A9D43760026392D /* ParkMapView.swift */,
 				C10001862A9D43760026392D /* RestroomService.swift */,
+				C10001902A9D43760026392D /* ParkCache.swift */,
+				C10001922A9D43760026392D /* DeepLink.swift */,
 				C100010D2A9D43760026392D /* Theme.swift */,
 				C100010F2A9D43760026392D /* RideDetailView.swift */,
 				C10001262A9D43760026392D /* Info.plist */,
@@ -362,6 +368,8 @@
 				C10001352A9D43760026392D /* ParkMapView.swift in Sources */,
 				C10001812A9D43760026392D /* AboutView.swift in Sources */,
 				C10001872A9D43760026392D /* RestroomService.swift in Sources */,
+				C10001912A9D43760026392D /* ParkCache.swift in Sources */,
+				C10001932A9D43760026392D /* DeepLink.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,7 +555,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -580,7 +588,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -607,7 +615,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -634,7 +642,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -652,7 +660,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParkTimes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ParkTimes";
 			};
 			name = Debug;
@@ -671,7 +679,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ParkTimes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ParkTimes";
 			};
 			name = Release;

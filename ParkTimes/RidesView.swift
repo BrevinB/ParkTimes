@@ -4,11 +4,13 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct RidesView: View {
     @EnvironmentObject private var favoritesStore: FavoritesStore
     @ObservedObject private var liveActivity = LiveActivityController.shared
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.requestReview) private var requestReview
 
     @State private var entities: [LiveEntity] = []
     @State private var schedule: [ScheduleEntry] = []
@@ -83,8 +85,11 @@ struct RidesView: View {
             RideDetailView(ride: ride, location: locations[ride.id], park: park, timezone: tz)
         }
         .task(id: park.id) {
+            restoreFromCache()
             await loadData()
             handleLaunchArguments()
+            openDeepLinkedRide()
+            recordVisitForReviewPrompt()
         }
         .task {
             // Wait times go stale fast — refresh quietly every minute.
@@ -188,6 +193,10 @@ struct RidesView: View {
                             .font(.caption2)
                     }
                     .foregroundStyle(.secondary)
+                }
+
+                if sections.openCount == 0 && searchText.isEmpty {
+                    asleepBanner
                 }
 
                 if !searchText.isEmpty && sections.isEmpty {
@@ -334,6 +343,82 @@ struct RidesView: View {
         }
     }
 
+    @ViewBuilder
+    private var asleepBanner: some View {
+        let state = ParkHoursInfo.today(schedule: schedule, timezone: tz).openState()
+        // "Open now but nothing operating" is a data hiccup, not bedtime.
+        if case .openNow = state {
+            EmptyView()
+        } else {
+            asleepCard(state)
+        }
+    }
+
+    private func asleepCard(_ state: ParkHoursInfo.OpenState) -> some View {
+        let detail: String = {
+            if case .opensLater(let opens) = state {
+                return "Gates open at \(PTFormat.time(opens, in: tz))."
+            }
+            return "Waits will return at rope drop."
+        }()
+
+        return HStack(spacing: 12) {
+            Image(systemName: "moon.stars.fill")
+                .font(.title3)
+                .foregroundStyle(.indigo)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("The park is asleep")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(.primary)
+                Text(detail)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            Spacer()
+        }
+        .padding(14)
+        .background(
+            RoundedRectangle(cornerRadius: 14)
+                .fill(Color.cardBackground)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 14)
+                        .stroke(.indigo.opacity(0.3), lineWidth: 1)
+                )
+        )
+        .accessibilityElement(children: .combine)
+    }
+
+    private func openDeepLinkedRide() {
+        if let rideId = DeepLinkRouter.shared.consumePendingRide(for: park.id),
+           autoOpenedRide == nil {
+            autoOpenedRide = entities.first { $0.id == rideId }
+        }
+    }
+
+    /// Ask for a rating on the third park visit — engaged, not annoyed.
+    private func recordVisitForReviewPrompt() {
+        guard !entities.isEmpty else { return }
+        let key = "parkVisitCount"
+        let visits = UserDefaults.standard.integer(forKey: key) + 1
+        UserDefaults.standard.set(visits, forKey: key)
+        if visits == 3 {
+            requestReview()
+        }
+    }
+
+    private func restoreFromCache() {
+        guard entities.isEmpty, let cached = ParkCache.load(parkId: park.id) else { return }
+        entities = cached.entities
+        schedule = cached.schedule
+        locations = cached.locations
+        landNameById = cached.landNameById
+        if timezone == nil, let tzId = cached.timezoneId {
+            timezone = TimeZone(identifier: tzId)
+        }
+        lastUpdated = cached.fetched
+    }
+
     /// Screenshot/demo hooks: `-openRide <name-fragment>` pushes a ride's
     /// detail after loading; `-openMap` presents the park map.
     private func handleLaunchArguments() {
@@ -393,6 +478,15 @@ struct RidesView: View {
 
             WaitAlertManager.evaluate(entities: entities)
             liveActivity.update(parkId: park.id, entities: entities, favoriteIds: favoritesStore.ids)
+
+            ParkCache.save(ParkCache.Snapshot(
+                fetched: lastUpdated ?? Date(),
+                entities: entities,
+                schedule: schedule,
+                locations: locations,
+                landNameById: landNameById,
+                timezoneId: timezone?.identifier ?? park.timezone?.identifier
+            ), parkId: park.id)
         } catch {
             // A request cancelled by navigation isn't a failure — stay quiet.
             let wasCancelled = Task.isCancelled

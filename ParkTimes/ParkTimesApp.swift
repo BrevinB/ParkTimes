@@ -13,6 +13,7 @@ struct ParkTimesApp: App {
 
     init() {
         WaitAlertManager.registerBackgroundTask()
+        NotificationRouter.shared.attach()
     }
 
     var body: some Scene {

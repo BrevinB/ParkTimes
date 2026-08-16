@@ -15,6 +15,17 @@ struct WidgetRide: Identifiable {
     let name: String
     let wait: Int?
     let isOpen: Bool
+    var parkId: String = ""
+    var parkName: String = ""
+
+    var deepLink: URL {
+        var components = URLComponents()
+        components.scheme = "parktimes"
+        components.host = "ride"
+        components.path = "/\(parkId)/\(id)"
+        components.queryItems = [URLQueryItem(name: "name", value: parkName)]
+        return components.url ?? URL(string: "parktimes://")!
+    }
 }
 
 struct FavoritesEntry: TimelineEntry {
@@ -56,7 +67,9 @@ struct FavoritesProvider: TimelineProvider {
                             id: entity.id,
                             name: entity.name,
                             wait: entity.waitTime,
-                            isOpen: entity.isOpen
+                            isOpen: entity.isOpen,
+                            parkId: favorite.parkId,
+                            parkName: favorite.parkName
                         ))
                     }
                 }
@@ -143,14 +156,16 @@ struct FavoritesWidgetView: View {
                 Spacer()
             } else {
                 ForEach(entry.rides.prefix(maxRows)) { ride in
-                    HStack(spacing: 6) {
-                        Text(ride.name)
-                            .font(.caption2)
-                            .fontWeight(.medium)
-                            .lineLimit(1)
-                            .foregroundStyle(.white)
-                        Spacer(minLength: 4)
-                        waitBadge(ride)
+                    Link(destination: ride.deepLink) {
+                        HStack(spacing: 6) {
+                            Text(ride.name)
+                                .font(.caption2)
+                                .fontWeight(.medium)
+                                .lineLimit(1)
+                                .foregroundStyle(.white)
+                            Spacer(minLength: 4)
+                            waitBadge(ride)
+                        }
                     }
                 }
                 Spacer(minLength: 0)
@@ -172,6 +187,7 @@ struct FavoritesWidgetView: View {
                 }
             }
         }
+        .widgetURL(entry.rides.first?.deepLink)
     }
 
     private func waitText(_ ride: WidgetRide) -> String {

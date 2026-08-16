@@ -11,6 +11,7 @@ struct ContentView: View {
 
     @State private var summaries: [String: ParkLiveSummary] = [:]
     @State private var path = NavigationPath()
+    @ObservedObject private var deepLinks = DeepLinkRouter.shared
 
     private var greeting: String {
         let hour = Calendar.current.component(.hour, from: Date())
@@ -75,6 +76,15 @@ struct ContentView: View {
             }
             .navigationDestination(for: ParkModel.self) { park in
                 RidesView(park: park)
+            }
+            .onOpenURL { url in
+                deepLinks.handle(url: url)
+            }
+            .onChange(of: deepLinks.pendingPark) { _, park in
+                if let park {
+                    path.append(park)
+                    deepLinks.pendingPark = nil
+                }
             }
             .task {
                 openParkFromLaunchArguments()

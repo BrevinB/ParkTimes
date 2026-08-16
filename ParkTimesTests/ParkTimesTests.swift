@@ -264,6 +264,78 @@ private let newYork = TimeZone(identifier: "America/New_York")!
     }
 }
 
+// MARK: - Deep Links
+
+@Suite struct DeepLinkTests {
+    @Test @MainActor func rideURLRoundTrips() {
+        let url = DeepLinkRouter.rideURL(parkId: "park-1", rideId: "ride-9", parkName: "Magic Kingdom")
+        let router = DeepLinkRouter.shared
+        router.handle(url: url)
+
+        #expect(router.pendingPark?.id == "park-1")
+        #expect(router.consumePendingRide(for: "park-1") == "ride-9")
+        // One-shot: consuming again yields nothing.
+        #expect(router.consumePendingRide(for: "park-1") == nil)
+        router.pendingPark = nil
+    }
+
+    @Test @MainActor func knownParkResolvesFromCatalog() {
+        let mk = ParkCatalog.disneyParks[0]
+        let router = DeepLinkRouter.shared
+        router.handle(url: URL(string: "parktimes://park/\(mk.id)")!)
+
+        #expect(router.pendingPark?.name == "Magic Kingdom")
+        #expect(router.pendingPark?.timezone != nil)
+        router.pendingPark = nil
+    }
+
+    @Test @MainActor func rideConsumeIsParkScoped() {
+        let router = DeepLinkRouter.shared
+        router.handle(url: DeepLinkRouter.rideURL(parkId: "park-A", rideId: "r1", parkName: "A"))
+
+        // A different park must not steal the pending ride.
+        #expect(router.consumePendingRide(for: "park-B") == nil)
+        #expect(router.consumePendingRide(for: "park-A") == "r1")
+        router.pendingPark = nil
+    }
+
+    @Test @MainActor func foreignSchemeIgnored() {
+        let router = DeepLinkRouter.shared
+        router.handle(url: URL(string: "https://example.com/park/x")!)
+        #expect(router.pendingPark == nil)
+    }
+}
+
+// MARK: - Park Cache
+
+@Suite struct ParkCacheTests {
+    @Test func roundTripsSnapshot() {
+        let parkId = "test-park-\(UUID().uuidString)"
+        defer { ParkCache.remove(parkId: parkId) }
+
+        let snapshot = ParkCache.Snapshot(
+            fetched: Date(timeIntervalSince1970: 1_755_000_000),
+            entities: [makeEntity(id: "r1", name: "Ride One", status: .operating, wait: 25)],
+            schedule: [ScheduleEntry(date: "2026-08-16", type: .operating, openingTime: nil, closingTime: nil, description: nil)],
+            locations: ["r1": EntityLocation(latitude: 28.4, longitude: -81.5)],
+            landNameById: ["r1": "Fantasyland"],
+            timezoneId: "America/New_York"
+        )
+        ParkCache.save(snapshot, parkId: parkId)
+
+        let loaded = ParkCache.load(parkId: parkId)
+        #expect(loaded != nil)
+        #expect(loaded?.entities.first?.waitTime == 25)
+        #expect(loaded?.landNameById["r1"] == "Fantasyland")
+        #expect(loaded?.timezoneId == "America/New_York")
+        #expect(loaded?.fetched == snapshot.fetched)
+    }
+
+    @Test func loadMissingReturnsNil() {
+        #expect(ParkCache.load(parkId: "never-saved-\(UUID().uuidString)") == nil)
+    }
+}
+
 // MARK: - Wait Alerts
 
 @Suite struct WaitAlertTests {

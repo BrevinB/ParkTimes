@@ -40,6 +40,7 @@ enum WaitAlertManager {
         content.title = alert.rideName
         content.body = "The wait is down to \(wait) minutes — go now!"
         content.sound = .default
+        content.userInfo = ["parkId": alert.parkId, "rideId": alert.id]
 
         let request = UNNotificationRequest(
             identifier: "waitAlert-\(alert.id)",
